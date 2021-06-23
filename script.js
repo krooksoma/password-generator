@@ -19,8 +19,10 @@ function writePassword() {
   console.log(finalPassword);
     
   
-  for (var i = 0; i < passwordLength; i++) {
-      finalPassword += password.charAt(Math.floor(Math.random() * passwordLength));
+  for (var i = 0; i < passwordLength ; i++) {
+      console.log(finalPassword);
+      finalPassword += password.charAt(Math.floor(Math.random() * passwordLength));      
+      console.log(i);      
   }
   
 
@@ -33,7 +35,7 @@ function writePassword() {
 function getLength() {
   var keyLength = window.prompt(" how long is the password? ");
   if((keyLength < 8) || (keyLength > 128)){
-    return window.alert("You need it to be at least 8 characters long and at most 128")
+    return window.alert("You need it to be at least 8 characters long and at most 128");
   }else  
   return keyLength;
 }
@@ -64,10 +66,3 @@ function generateArray() {
 
   return possibleCharacters;
 }
-
-
-
-//function to generate password
-
-
-
