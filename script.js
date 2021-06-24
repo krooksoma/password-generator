@@ -21,7 +21,7 @@ function writePassword() {
   
   for (var i = 0; i < passwordLength ; i++) {
       console.log(finalPassword);
-      finalPassword += password.charAt(Math.floor(Math.random() * passwordLength));      
+      finalPassword += password.charAt(Math.floor(Math.random() * password.length));      
       console.log(i);      
   }
   
