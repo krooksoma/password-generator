@@ -6,5 +6,5 @@ link to deployed application:
 
 screenshot of deployed aplication:
 
-
+![Password Generator Screenshot](/img/screenshot.png)
 
