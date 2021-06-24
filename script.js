@@ -1,41 +1,48 @@
 // Arrays for character selection
-var spCharacters = ["@", "%", "+", "\\", "/", "'", "!", "#", "$", "^", "?", ":", ",", ")", "(", "}", "{", "]", "[", "~", "-", "_", "."];
-var numberCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var lowerCaseCharacters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var upperCaseCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
+var spCharacters = ("@%+'!#$^?:)(}{][~-_.");
+var numberCharacters = ("0123456789");
+var lowerCaseCharacters = ("abcdefghijklmnopqrstuvwxyz");
+var upperCaseCharacters = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
 
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+// Write password to the #password input
+function writePassword() {
+  var passwordLength = getLength(); // password length gets aassigned
+  console.log(passwordLength);
+  var password = generateArray(); // generating array to choose characters from
+  console.log(password);
+  var finalPassword = " "; //final password empty array to be populated
+  console.log(finalPassword);
+    
+  
+  for (var i = 0; i < passwordLength; i++) {
+      finalPassword += password.charAt(Math.floor(Math.random() * passwordLength));
+  }
+  
 
-//function to generate password
-
-function generatePassword() {
-  var finalPassword = generateArray();
-
-  return finalPassword;
+  var passwordText = document.querySelector("#password");
+  passwordText.value = finalPassword;
 }
 
+// function to get the password length within the stabilished size
+
+function getLength() {
+  var keyLength = window.prompt(" how long is the password? ");
+  if((keyLength < 8) || (keyLength > 128)){
+    return window.alert("You need it to be at least 8 characters long and at most 128")
+  }else  
+  return keyLength;
+}
+
+// Function to generate the possible characters allowed in the password
 
 function generateArray() {
   var possibleCharacters = [];
-  var generatedPassword = [];
 
-  // window to prompt length of the password generated
-  var passwordLength = window.prompt(" how long is the password? ");
-  console.log(passwordLength);
   var numbers = window.confirm("Do you want numbers?");
   console.log(numbers);
   var lowerCase = window.confirm("Do you want lowercase characters?");
@@ -45,30 +52,22 @@ function generateArray() {
   var specCharacters = window.confirm("Do you want special characters?");
   console.log(specCharacters);
 
+  //  populating Array possibleCharacters with characters
 
-  if (specCharacters) {
-    possibleCharacters = possibleCharacters.concat(spCharacters);
-    if (upperCase) {
-      possibleCharacters = possibleCharacters.concat(upperCaseCharacters);
-      if (lowerCase) {
-        possibleCharacters = possibleCharacters.concat(lowerCaseCharacters);
-        if (lowerCase) {
-          possibleCharacters = possibleCharacters.concat(lowerCaseCharacters);
-          if (numbers) {
-            possibleCharacters = possibleCharacters.concat(numberCharacters);
-          }
-        }
-      }
-    }
-  }
+  if (numbers) possibleCharacters += numberCharacters;
 
-  console.log(possibleCharacters);
+  if (lowerCase) possibleCharacters += lowerCaseCharacters;
 
-  // for loop to create the password
+  if (upperCase) possibleCharacters += upperCaseCharacters;
 
-  for (let i = 0; i < passwordLength; i++) {
-    generatedPassword += Math.random(possibleCharacters);
-  }
+  if (specCharacters) possibleCharacters += spCharacters;
 
-  return generatedPassword;
+  return possibleCharacters;
 }
+
+
+
+//function to generate password
+
+
+
