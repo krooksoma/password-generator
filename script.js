@@ -1,4 +1,4 @@
-// Arrays for character selection
+// Strings for character selection
 var spCharacters = ("@%+'!#$^?:)(}{][~-_.");
 var numberCharacters = ("0123456789");
 var lowerCaseCharacters = ("abcdefghijklmnopqrstuvwxyz");
@@ -13,9 +13,9 @@ generateBtn.addEventListener("click", writePassword);
 function writePassword() {
   var passwordLength = getLength(); // password length gets aassigned
   console.log(passwordLength);
-  var password = generateArray(); // generating array to choose characters from
+  var password = generateArray(); // generating string to choose characters from
   console.log(password);
-  var finalPassword = " "; //final password empty array to be populated
+  var finalPassword = " "; //final password empty string to be populated
   console.log(finalPassword);
     
   
@@ -33,7 +33,7 @@ function writePassword() {
 // function to get the password length within the stabilished size
 
 function getLength() {
-  var keyLength = window.prompt(" how long is the password? ");
+  var keyLength = window.prompt("How long is the password? ");
   if((keyLength < 8) || (keyLength > 128)){
     return window.alert("You need it to be at least 8 characters long and at most 128");
   }else  
